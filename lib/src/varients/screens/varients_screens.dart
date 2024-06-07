@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:real_estate_app/style/colors.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class VarientScreen extends StatefulWidget {
+  const VarientScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<VarientScreen> createState() => _VarientScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _VarientScreenState extends State<VarientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

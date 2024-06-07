@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NavProvider extends ChangeNotifier {
-  int _navIndex = 0;
+  int _navIndex = 2;
   int get navIndex => _navIndex;
   set setNavIndex(int navIndex) {
     _navIndex = navIndex;
