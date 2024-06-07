@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -71,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const CircleAvatar(
                           backgroundColor: AppColors.darkAmber,
+                          backgroundImage: CachedNetworkImageProvider('https://robohash.org/a'),
                         ),
                       ],
                     ),

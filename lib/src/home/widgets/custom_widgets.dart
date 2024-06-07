@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:real_estate_app/style/colors.dart';
 
 class OfferCard extends StatelessWidget {
@@ -45,7 +44,7 @@ class OfferCard extends StatelessWidget {
             Text(
               offers,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 26,
                 fontWeight: FontWeight.bold,
                 color: textColor,
               ),
@@ -122,7 +121,8 @@ class PropertyCard extends StatelessWidget {
               ),
               child: IconButton(
                 icon: const Icon(Icons.arrow_forward_ios),
-                color: Colors.grey,
+                color: AppColors.grey,
+                iconSize: 12,
                 onPressed: () {},
               ),
             ),
