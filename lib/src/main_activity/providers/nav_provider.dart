@@ -7,4 +7,12 @@ class NavProvider extends ChangeNotifier {
     _navIndex = navIndex;
     notifyListeners();
   }
+
+  List<IconData> navItems = [
+    Icons.search,
+    Icons.chat_bubble_outline,
+    Icons.home,
+    Icons.favorite_border,
+    Icons.person_outline
+  ];
 }

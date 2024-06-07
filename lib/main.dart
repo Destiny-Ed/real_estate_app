@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_estate_app/src/main_activity/main_activity.dart';
-import 'package:real_estate_app/src/main_activity/nav_provider.dart';
+import 'package:real_estate_app/src/main_activity/screens/main_activity.dart';
+import 'package:real_estate_app/src/main_activity/providers/nav_provider.dart';
 
 void main() {
   runApp(const MyApp());
