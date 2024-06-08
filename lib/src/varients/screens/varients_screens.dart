@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:real_estate_app/src/varients/providers/varient_provider.dart';
@@ -13,62 +12,10 @@ class VarientScreen extends StatefulWidget {
 }
 
 class _VarientScreenState extends State<VarientScreen> {
-  GoogleMapController? mapController;
-
-  final LatLng _center = const LatLng(59.9342802, 30.3350986); // Coordinates for Saint Petersburg
-  final Set<Marker> _markers = {
-    Marker(
-      markerId: const MarkerId('1'),
-      position: const LatLng(59.94, 30.32),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
-    ),
-    Marker(
-      markerId: const MarkerId('2'),
-      position: const LatLng(59.92, 30.34),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
-    ),
-
-    Marker(
-      markerId: const MarkerId('3'),
-      position: const LatLng(59.89, 30.36),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
-    ),
-    Marker(
-      markerId: const MarkerId('4'),
-      position: const LatLng(59.90, 30.30),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
-    ),
-    Marker(
-      markerId: const MarkerId('5'),
-      position: const LatLng(59.96, 30.30),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
-    ),
-    Marker(
-      markerId: const MarkerId('5'),
-      position: const LatLng(59.89, 30.31),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
-    ),
-
-    // Add more markers here
-  };
-
-  String? _mapStyle;
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-  void _loadMapStyle() async {
-    final String style = await rootBundle.loadString('assets/styles/map_style.json');
-
-    _mapStyle = style;
-    setState(() {});
-  }
-
   @override
   void initState() {
     super.initState();
-    _loadMapStyle();
+    context.read<VariantProvider>().loadMapStyle();
   }
 
   @override
@@ -79,13 +26,13 @@ class _VarientScreenState extends State<VarientScreen> {
           children: [
             //Map starts
             GoogleMap(
-              onMapCreated: _onMapCreated,
+              onMapCreated: varientState.onMapCreated,
               initialCameraPosition: CameraPosition(
-                target: _center,
+                target: varientState.center,
                 zoom: 12.0,
               ),
-              markers: _markers,
-              style: _mapStyle,
+              markers: varientState.markers,
+              style: varientState.mapStyle,
             ),
             //Map ends
 
