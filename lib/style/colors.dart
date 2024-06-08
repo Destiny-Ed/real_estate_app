@@ -5,6 +5,8 @@ class AppColors {
 
   static const darkAmber = Color(0xfffc9d11);
 
+  static const ash = Color(0xff707070);
+
   static const black = Color(0xff232220);
   static const white = Colors.white;
 }

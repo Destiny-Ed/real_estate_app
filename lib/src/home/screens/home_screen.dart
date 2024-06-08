@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:real_estate_app/config/constant.dart';
 import 'package:real_estate_app/src/home/widgets/custom_widgets.dart';
 import 'package:real_estate_app/style/colors.dart';
 
@@ -72,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const CircleAvatar(
                           backgroundColor: AppColors.darkAmber,
-                          backgroundImage: CachedNetworkImageProvider('https://robohash.org/a'),
+                          backgroundImage: CachedNetworkImageProvider(dummyIcon),
                         ),
                       ],
                     ),
@@ -83,17 +82,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 20),
 
                   ///greetings section starts
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
+                  AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeInOut,
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: const Text(
                       "Hi, Marina",
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AppColors.grey),
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
+                  AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeInOut,
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: const Text(
                       "let's select your\nperfect place",
                       style: TextStyle(
                         fontSize: 24,
@@ -118,9 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           textColor: AppColors.white,
                           isRound: true,
                         ),
-                        SizedBox(
-                          width: 20,
-                        ),
+                        SizedBox(width: 20),
                         OfferCard(
                           title: "rent",
                           offers: "2 212",
@@ -145,8 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: const Column(
                       children: [
                         PropertyCard(
-                          imageUrl:
-                              'https://media.istockphoto.com/id/951950894/photo/grey-corner-couch-with-pillows-and-blankets-in-white-living-room-interior-with-windows-and.jpg?s=612x612&w=0&k=20&c=WAAynQPn3XY29g_3WOMwH8gdFaSILb-ck7hMt_g1RSQ=',
+                          imageUrl: 'image_one',
                           address: 'Gladkova St., 25',
                         ),
                         SizedBox(height: 10),
@@ -157,8 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Expanded(
                                 child: PropertyCard(
                                   height: 400,
-                                  imageUrl:
-                                      'https://media.istockphoto.com/id/957053734/photo/domestic-kitchen-interior.jpg?s=612x612&w=0&k=20&c=dundn0b7jCtlqQAli-wYq--zM2NcfFAVjrt--cLYG_g=',
+                                  imageUrl: 'image_two',
                                   address: 'Gladkova St., 25',
                                 ),
                               ),
@@ -167,15 +166,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Column(
                                   children: [
                                     PropertyCard(
-                                      imageUrl:
-                                          'https://media.istockphoto.com/id/957053734/photo/domestic-kitchen-interior.jpg?s=612x612&w=0&k=20&c=dundn0b7jCtlqQAli-wYq--zM2NcfFAVjrt--cLYG_g=',
+                                      imageUrl: 'image_three',
                                       address: 'Gladkova St., 25',
                                     ),
                                     SizedBox(height: 10),
                                     Expanded(
                                       child: PropertyCard(
-                                        imageUrl:
-                                            'https://media.istockphoto.com/id/1199241746/photo/dark-colorful-home-interior-with-retro-furniture-mexican-style-living-room.jpg?s=612x612&w=0&k=20&c=0Sk7OPzda12-2GpmpbKfUYc31NtXmPVMmWvlLAu4CE0=',
+                                        imageUrl: 'image_four',
                                         address: 'Gladkova St., 25',
                                       ),
                                     ),
