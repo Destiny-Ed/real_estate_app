@@ -20,9 +20,6 @@ class OfferCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        // height: 160,
-        // width: 160,
-        // width: MediaQuery.of(context).size.width * 0.42,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: color,

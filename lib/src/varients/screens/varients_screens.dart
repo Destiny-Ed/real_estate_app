@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:real_estate_app/src/varients/providers/varient_provider.dart';
 import 'package:real_estate_app/style/colors.dart';
 
 class VarientScreen extends StatefulWidget {
@@ -26,6 +27,28 @@ class _VarientScreenState extends State<VarientScreen> {
       position: const LatLng(59.92, 30.34),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
     ),
+
+    Marker(
+      markerId: const MarkerId('3'),
+      position: const LatLng(59.89, 30.36),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+    ),
+    Marker(
+      markerId: const MarkerId('4'),
+      position: const LatLng(59.90, 30.30),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+    ),
+    Marker(
+      markerId: const MarkerId('5'),
+      position: const LatLng(59.96, 30.30),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+    ),
+    Marker(
+      markerId: const MarkerId('5'),
+      position: const LatLng(59.89, 30.31),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+    ),
+
     // Add more markers here
   };
 
@@ -50,133 +73,136 @@ class _VarientScreenState extends State<VarientScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          //Map starts
-          GoogleMap(
-            onMapCreated: _onMapCreated,
-            initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 12.0,
-            ),
-            markers: _markers,
-            style: _mapStyle,
-          ),
-          //Map ends
-
-          ///Search and filter field starts
-          Positioned(
-            top: 60.0,
-            left: 35.0,
-            right: 35.0,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
-                      color: Colors.white,
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: const Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 16.0, right: 5),
-                          child: Icon(
-                            Icons.search,
-                            size: 20,
-                          ),
-                        ),
-                        Text(
-                          'Saint Petersburg',
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(color: AppColors.white, shape: BoxShape.circle),
-                  child: const Icon(
-                    Icons.candlestick_chart,
-                    size: 20,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          ///Search and filter field ends
-          ///
-
-          //additional buttons
-
-          Positioned(
-            bottom: MediaQuery.of(context).size.height / 6.5,
-            right: 35.0,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                color: AppColors.ash.withOpacity(0.7),
+    return Consumer<VariantProvider>(builder: (context, varientState, child) {
+      return Scaffold(
+        body: Stack(
+          children: [
+            //Map starts
+            GoogleMap(
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: _center,
+                zoom: 12.0,
               ),
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-              child: const Row(
+              markers: _markers,
+              style: _mapStyle,
+            ),
+            //Map ends
+
+            ///Search and filter field starts
+            Positioned(
+              top: 60.0,
+              left: 35.0,
+              right: 35.0,
+              child: Row(
                 children: [
-                  Icon(
-                    Icons.format_align_left_rounded,
-                    size: 16,
-                    color: AppColors.white,
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30.0),
+                        color: Colors.white,
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 16.0, right: 5),
+                            child: Icon(
+                              Icons.search,
+                              size: 20,
+                            ),
+                          ),
+                          Text(
+                            'Saint Petersburg',
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  SizedBox(width: 10),
-                  Text(
-                    'List of variants',
-                    style: TextStyle(color: AppColors.white, fontSize: 12),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(color: AppColors.white, shape: BoxShape.circle),
+                    child: const Icon(
+                      Icons.candlestick_chart,
+                      size: 20,
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
 
-          ///left action buttons
-          Positioned(
-            bottom: MediaQuery.of(context).size.height / 6.5,
-            left: 35.0,
-            child: Column(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    _showMenu(context);
-                  },
-                  child: Container(
+            ///Search and filter field ends
+            ///
+
+            //additional buttons
+
+            Positioned(
+              bottom: MediaQuery.of(context).size.height / 6.5,
+              right: 35.0,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: AppColors.ash.withOpacity(0.7),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.format_align_left_rounded,
+                      size: 16,
+                      color: AppColors.white,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      'List of variants',
+                      style: TextStyle(color: AppColors.white, fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            ///left action buttons
+            Positioned(
+              bottom: MediaQuery.of(context).size.height / 6.5,
+              left: 35.0,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      _showMenu(context);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration:
+                          BoxDecoration(color: AppColors.ash.withOpacity(0.7), shape: BoxShape.circle),
+                      child: const Icon(
+                        Icons.expand_outlined,
+                        color: AppColors.white,
+                        size: 16,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(color: AppColors.ash.withOpacity(0.7), shape: BoxShape.circle),
                     child: const Icon(
-                      Icons.expand_outlined,
+                      Icons.send,
                       color: AppColors.white,
                       size: 16,
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(color: AppColors.ash.withOpacity(0.7), shape: BoxShape.circle),
-                  child: const Icon(
-                    Icons.send,
-                    color: AppColors.white,
-                    size: 16,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 }
 
