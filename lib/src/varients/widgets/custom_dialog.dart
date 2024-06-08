@@ -18,7 +18,7 @@ class _CustomDialogState extends State<CustomDialog> with SingleTickerProviderSt
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(seconds: 1),
       vsync: this,
     );
     _scaleAnimation = CurvedAnimation(
@@ -37,6 +37,7 @@ class _CustomDialogState extends State<CustomDialog> with SingleTickerProviderSt
           top: widget.tapPosition.dy - MediaQuery.of(context).size.height / 3.5,
           // bottom: tapPosition.dy - 100,
           child: ScaleTransition(
+            alignment: Alignment.bottomLeft,
             scale: _scaleAnimation,
             child: Material(
               color: Colors.transparent,
@@ -45,49 +46,52 @@ class _CustomDialogState extends State<CustomDialog> with SingleTickerProviderSt
                   borderRadius: BorderRadius.circular(20),
                 ),
                 backgroundColor: const Color(0xfffbf5eb),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildDialogItem(
-                        icon: Icons.check_circle_outline,
-                        text: 'Cosy areas',
-                        iconColor: AppColors.grey,
-                        textColor: AppColors.grey,
-                        onTap: () {
-                          _close();
-                        },
-                      ),
-                      _buildDialogItem(
-                        icon: Icons.price_change,
-                        text: 'Price',
-                        iconColor: AppColors.darkAmber,
-                        textColor: AppColors.darkAmber,
-                        onTap: () {
-                          _close();
-                        },
-                      ),
-                      _buildDialogItem(
-                        icon: Icons.location_city,
-                        text: 'Infrastructure',
-                        iconColor: AppColors.grey,
-                        textColor: AppColors.grey,
-                        onTap: () {
-                          _close();
-                        },
-                      ),
-                      _buildDialogItem(
-                        icon: Icons.layers_outlined,
-                        text: 'Without any layer',
-                        iconColor: Colors.grey,
-                        textColor: Colors.grey,
-                        onTap: () {
-                          _close();
-                        },
-                      ),
-                    ],
+                child: IntrinsicWidth(
+                  stepWidth: MediaQuery.of(context).size.width / 8,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildDialogItem(
+                          icon: Icons.check_circle_outline,
+                          text: 'Cosy areas',
+                          iconColor: AppColors.grey,
+                          textColor: AppColors.grey,
+                          onTap: () {
+                            _close();
+                          },
+                        ),
+                        _buildDialogItem(
+                          icon: Icons.price_change,
+                          text: 'Price',
+                          iconColor: AppColors.darkAmber,
+                          textColor: AppColors.darkAmber,
+                          onTap: () {
+                            _close();
+                          },
+                        ),
+                        _buildDialogItem(
+                          icon: Icons.location_city,
+                          text: 'Infrastructure',
+                          iconColor: AppColors.grey,
+                          textColor: AppColors.grey,
+                          onTap: () {
+                            _close();
+                          },
+                        ),
+                        _buildDialogItem(
+                          icon: Icons.layers_outlined,
+                          text: 'Without any layer',
+                          iconColor: Colors.grey,
+                          textColor: Colors.grey,
+                          onTap: () {
+                            _close();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
