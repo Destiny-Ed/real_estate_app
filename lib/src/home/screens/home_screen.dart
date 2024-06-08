@@ -88,7 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: const Text(
                       "Hi, Marina",
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AppColors.grey),
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.grey,
+                          fontFamily: 'Montserrat'),
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -100,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       "let's select your\nperfect place",
                       style: TextStyle(
                         fontSize: 24,
+                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
