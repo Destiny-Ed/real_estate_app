@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:real_estate_app/src/main_activity/providers/nav_provider.dart';
+import 'package:real_estate_app/style/colors.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({super.key});
@@ -12,7 +13,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         return Container(
           height: 60,
           decoration: BoxDecoration(
-            color: Colors.black87,
+            color: const Color(0xff2b2b2b),
             borderRadius: BorderRadius.circular(50),
           ),
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -30,11 +31,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     duration: const Duration(seconds: 1),
                     curve: Curves.easeInOut,
                     decoration: BoxDecoration(
-                      color: isSelected ? Colors.orange : Colors.black,
+                      color: isSelected ? AppColors.darkAmber : const Color(0xff232220),
                       shape: BoxShape.circle,
                     ),
                     padding: EdgeInsets.all(isSelected ? 10 : 8),
-                    child: Icon(icon, color: Colors.white, size: 22),
+                    child: Icon(icon, color: AppColors.white, size: 22),
                   ),
                 );
               })),

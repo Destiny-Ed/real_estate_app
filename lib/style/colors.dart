@@ -9,4 +9,6 @@ class AppColors {
 
   static const black = Color(0xff232220);
   static const white = Colors.white;
+
+  static const iconColor = Color.fromARGB(255, 197, 190, 190);
 }

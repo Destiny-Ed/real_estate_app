@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:real_estate_app/src/varients/providers/varient_provider.dart';
+import 'package:real_estate_app/src/varients/widgets/custom_dialog.dart';
 import 'package:real_estate_app/style/colors.dart';
 
 class VarientScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class _VarientScreenState extends State<VarientScreen> {
   void initState() {
     super.initState();
     context.read<VariantProvider>().loadMapStyle();
+    context.read<VariantProvider>().getMarkers();
   }
 
   @override
@@ -31,6 +33,7 @@ class _VarientScreenState extends State<VarientScreen> {
                 target: varientState.center,
                 zoom: 12.0,
               ),
+              myLocationButtonEnabled: false,
               markers: varientState.markers,
               style: varientState.mapStyle,
             ),
@@ -100,12 +103,12 @@ class _VarientScreenState extends State<VarientScreen> {
                     Icon(
                       Icons.format_align_left_rounded,
                       size: 16,
-                      color: AppColors.white,
+                      color: AppColors.iconColor,
                     ),
                     SizedBox(width: 10),
                     Text(
                       'List of variants',
-                      style: TextStyle(color: AppColors.white, fontSize: 12),
+                      style: TextStyle(color: AppColors.iconColor, fontSize: 12),
                     ),
                   ],
                 ),
@@ -119,8 +122,13 @@ class _VarientScreenState extends State<VarientScreen> {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      _showMenu(context);
+                    onTapDown: (TapDownDetails details) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => CustomDialog(
+                          tapPosition: details.globalPosition,
+                        ),
+                      );
                     },
                     child: Container(
                       padding: const EdgeInsets.all(10),
@@ -128,7 +136,7 @@ class _VarientScreenState extends State<VarientScreen> {
                           BoxDecoration(color: AppColors.ash.withOpacity(0.7), shape: BoxShape.circle),
                       child: const Icon(
                         Icons.expand_outlined,
-                        color: AppColors.white,
+                        color: AppColors.iconColor,
                         size: 16,
                       ),
                     ),
@@ -139,7 +147,7 @@ class _VarientScreenState extends State<VarientScreen> {
                     decoration: BoxDecoration(color: AppColors.ash.withOpacity(0.7), shape: BoxShape.circle),
                     child: const Icon(
                       Icons.send,
-                      color: AppColors.white,
+                      color: AppColors.iconColor,
                       size: 16,
                     ),
                   ),
@@ -151,38 +159,4 @@ class _VarientScreenState extends State<VarientScreen> {
       );
     });
   }
-}
-
-void _showMenu(BuildContext context) {
-  final RenderBox button = context.findRenderObject() as RenderBox;
-  final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
-  final RelativeRect position = RelativeRect.fromLTRB(
-    15.0, // left
-    overlay.size.height - 20.0 - button.size.height, // top (bottom left)
-    overlay.size.width - 15.0 - button.size.width, // right
-    20.0, // bottom
-  );
-
-  showMenu<String>(
-    context: context,
-    position: position,
-    items: <PopupMenuEntry<String>>[
-      const PopupMenuItem<String>(
-        value: 'Option 1',
-        child: Text('Option 1'),
-      ),
-      const PopupMenuItem<String>(
-        value: 'Option 2',
-        child: Text('Option 2'),
-      ),
-      const PopupMenuItem<String>(
-        value: 'Option 3',
-        child: Text('Option 3'),
-      ),
-    ],
-  ).then((String? value) {
-    if (value != null) {
-      // Handle menu item selection
-    }
-  });
 }
