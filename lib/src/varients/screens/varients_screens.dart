@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:real_estate_app/src/varients/providers/varient_provider.dart';
@@ -16,6 +17,11 @@ class _VarientScreenState extends State<VarientScreen> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     context.read<VariantProvider>().loadMapStyle();
     context.read<VariantProvider>().getMarkers();
   }
