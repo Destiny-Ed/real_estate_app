@@ -10,7 +10,7 @@ Android Studio or Xcode (for iOS development)
 
 # Running the Flutter App
 
-# Clone the repository (git clone https://github.com/Destiny-Ed/real_estate_app)
+Clone the repository (git clone https://github.com/Destiny-Ed/real_estate_app)
 
 # Install dependencies
 
